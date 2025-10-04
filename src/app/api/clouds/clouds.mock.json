@@ -9,12 +9,7 @@
         ],
         "eventProcessEnabled": true,
         "userActivityEnabled": true,
-        "scheduleScanEnabled": true,
-        "scheduleScanSetting": {
-            "frequency": "DAY",
-            "hour": "02",
-            "minute": "00"
-        },
+        "scheduleScanEnabled": false,
         "regionList": [
             "us-east-1",
             "us-west-2",
@@ -119,13 +114,7 @@
         ],
         "eventProcessEnabled": true,
         "userActivityEnabled": true,
-        "scheduleScanEnabled": true,
-        "scheduleScanSetting": {
-            "frequency": "MONTH",
-            "date": "1",
-            "hour": "00",
-            "minute": "00"
-        },
+        "scheduleScanEnabled": false,
         "regionList": [
             "us-east-1",
             "us-west-2",
@@ -222,12 +211,7 @@
         ],
         "eventProcessEnabled": true,
         "userActivityEnabled": false,
-        "scheduleScanEnabled": true,
-        "scheduleScanSetting": {
-            "frequency": "DAY",
-            "hour": "05",
-            "minute": "30"
-        },
+        "scheduleScanEnabled": false,
         "regionList": [
             "us-east-1",
             "us-west-2",
