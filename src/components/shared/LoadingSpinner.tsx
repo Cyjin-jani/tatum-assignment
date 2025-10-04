@@ -1,4 +1,4 @@
-export function LoadingSpinner() {
+function LoadingSpinner() {
   return (
     <div className="flex min-h-[400px] flex-col items-center justify-center p-8">
       <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
@@ -6,3 +6,5 @@ export function LoadingSpinner() {
     </div>
   );
 }
+
+export default LoadingSpinner;
