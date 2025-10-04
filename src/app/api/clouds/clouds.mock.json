@@ -1,0 +1,278 @@
+[
+    {
+        "id": "cloud-001",
+        "provider": "AWS",
+        "name": "Production AWS Account",
+        "cloudGroupName": [
+            "production",
+            "aws"
+        ],
+        "eventProcessEnabled": true,
+        "userActivityEnabled": true,
+        "scheduleScanEnabled": true,
+        "scheduleScanSetting": {
+            "frequency": "DAY",
+            "hour": "02",
+            "minute": "00"
+        },
+        "regionList": [
+            "us-east-1",
+            "us-west-2",
+            "ap-northeast-2"
+        ],
+        "proxyUrl": "https://proxy.company.com",
+        "credentials": {
+            "accessKeyId": "AKIA********18",
+            "secretAccessKey": "jZd1********0n"
+        },
+        "credentialType": "ACCESS_KEY",
+        "eventSource": {
+            "cloudTrailName": "production-cloudtrail"
+        }
+    },
+    {
+        "id": "cloud-002",
+        "provider": "AWS",
+        "name": "Development AWS Account",
+        "cloudGroupName": [
+            "development"
+        ],
+        "eventProcessEnabled": false,
+        "userActivityEnabled": true,
+        "scheduleScanEnabled": false,
+        "regionList": [
+            "ap-northeast-2"
+        ],
+        "credentials": {
+            "accessKeyId": "AKIA********19",
+            "secretAccessKey": "jZd1********1p"
+        },
+        "credentialType": "ACCESS_KEY"
+    },
+    {
+        "id": "cloud-003",
+        "provider": "AWS",
+        "name": "Staging AWS Account",
+        "cloudGroupName": [
+            "staging",
+            "aws"
+        ],
+        "eventProcessEnabled": true,
+        "userActivityEnabled": false,
+        "scheduleScanEnabled": true,
+        "scheduleScanSetting": {
+            "frequency": "WEEK",
+            "weekday": "MON",
+            "hour": "03",
+            "minute": "30"
+        },
+        "regionList": [
+            "us-east-1",
+            "eu-west-1"
+        ],
+        "credentials": {
+            "accessKeyId": "AKIA********20",
+            "secretAccessKey": "jZd1********2q"
+        },
+        "credentialType": "ACCESS_KEY",
+        "eventSource": {
+            "cloudTrailName": "staging-cloudtrail"
+        }
+    },
+    {
+        "id": "cloud-004",
+        "provider": "AWS",
+        "name": "Analytics AWS Account",
+        "cloudGroupName": [
+            "analytics",
+            "data"
+        ],
+        "eventProcessEnabled": true,
+        "userActivityEnabled": true,
+        "scheduleScanEnabled": true,
+        "scheduleScanSetting": {
+            "frequency": "HOUR",
+            "hour": "01",
+            "minute": "00"
+        },
+        "regionList": [
+            "us-east-1",
+            "us-west-2",
+            "ap-southeast-1"
+        ],
+        "proxyUrl": "https://analytics-proxy.company.com",
+        "credentials": {
+            "accessKeyId": "AKIA********21",
+            "secretAccessKey": "jZd1********3r"
+        },
+        "credentialType": "ACCESS_KEY",
+        "eventSource": {
+            "cloudTrailName": "analytics-cloudtrail"
+        }
+    },
+    {
+        "id": "cloud-005",
+        "provider": "AWS",
+        "name": "Security AWS Account",
+        "cloudGroupName": [
+            "security"
+        ],
+        "eventProcessEnabled": true,
+        "userActivityEnabled": true,
+        "scheduleScanEnabled": true,
+        "scheduleScanSetting": {
+            "frequency": "MONTH",
+            "date": "1",
+            "hour": "00",
+            "minute": "00"
+        },
+        "regionList": [
+            "us-east-1",
+            "us-west-2",
+            "eu-central-1"
+        ],
+        "credentials": {
+            "accessKeyId": "AKIA********22",
+            "secretAccessKey": "jZd1********4s"
+        },
+        "credentialType": "ACCESS_KEY",
+        "eventSource": {
+            "cloudTrailName": "security-cloudtrail"
+        }
+    },
+    {
+        "id": "cloud-006",
+        "provider": "AWS",
+        "name": "Backup AWS Account",
+        "cloudGroupName": [
+            "backup",
+            "storage"
+        ],
+        "eventProcessEnabled": false,
+        "userActivityEnabled": false,
+        "scheduleScanEnabled": true,
+        "scheduleScanSetting": {
+            "frequency": "WEEK",
+            "weekday": "SUN",
+            "hour": "04",
+            "minute": "00"
+        },
+        "regionList": [
+            "us-west-2",
+            "ap-northeast-2"
+        ],
+        "credentials": {
+            "accessKeyId": "AKIA********23",
+            "secretAccessKey": "jZd1********5t"
+        },
+        "credentialType": "ACCESS_KEY"
+    },
+    {
+        "id": "cloud-007",
+        "provider": "AWS",
+        "name": "Monitoring AWS Account",
+        "cloudGroupName": [
+            "monitoring",
+            "observability"
+        ],
+        "eventProcessEnabled": true,
+        "userActivityEnabled": true,
+        "scheduleScanEnabled": false,
+        "regionList": [
+            "us-east-1",
+            "us-west-2",
+            "eu-west-1"
+        ],
+        "proxyUrl": "https://monitoring-proxy.company.com",
+        "credentials": {
+            "accessKeyId": "AKIA********24",
+            "secretAccessKey": "jZd1********6u"
+        },
+        "credentialType": "ACCESS_KEY",
+        "eventSource": {
+            "cloudTrailName": "monitoring-cloudtrail"
+        }
+    },
+    {
+        "id": "cloud-008",
+        "provider": "AWS",
+        "name": "Testing AWS Account",
+        "cloudGroupName": [
+            "testing"
+        ],
+        "eventProcessEnabled": false,
+        "userActivityEnabled": false,
+        "scheduleScanEnabled": false,
+        "regionList": [
+            "ap-northeast-2"
+        ],
+        "credentials": {
+            "accessKeyId": "AKIA********25",
+            "secretAccessKey": "jZd1********7v"
+        },
+        "credentialType": "ACCESS_KEY"
+    },
+    {
+        "id": "cloud-009",
+        "provider": "AWS",
+        "name": "Data Processing AWS Account",
+        "cloudGroupName": [
+            "data-processing",
+            "etl"
+        ],
+        "eventProcessEnabled": true,
+        "userActivityEnabled": false,
+        "scheduleScanEnabled": true,
+        "scheduleScanSetting": {
+            "frequency": "DAY",
+            "hour": "05",
+            "minute": "30"
+        },
+        "regionList": [
+            "us-east-1",
+            "us-west-2",
+            "ap-southeast-1",
+            "eu-central-1"
+        ],
+        "credentials": {
+            "accessKeyId": "AKIA********26",
+            "secretAccessKey": "jZd1********8w"
+        },
+        "credentialType": "ACCESS_KEY",
+        "eventSource": {
+            "cloudTrailName": "data-processing-cloudtrail"
+        }
+    },
+    {
+        "id": "cloud-010",
+        "provider": "AWS",
+        "name": "Customer AWS Account",
+        "cloudGroupName": [
+            "customer",
+            "external"
+        ],
+        "eventProcessEnabled": true,
+        "userActivityEnabled": true,
+        "scheduleScanEnabled": true,
+        "scheduleScanSetting": {
+            "frequency": "WEEK",
+            "weekday": "FRI",
+            "hour": "06",
+            "minute": "00"
+        },
+        "regionList": [
+            "us-east-1",
+            "us-west-2",
+            "ap-northeast-2"
+        ],
+        "proxyUrl": "https://customer-proxy.company.com",
+        "credentials": {
+            "accessKeyId": "AKIA********27",
+            "secretAccessKey": "jZd1********9x"
+        },
+        "credentialType": "ACCESS_KEY",
+        "eventSource": {
+            "cloudTrailName": "customer-cloudtrail"
+        }
+    }
+]
