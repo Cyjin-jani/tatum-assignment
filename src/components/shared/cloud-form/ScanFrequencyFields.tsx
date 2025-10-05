@@ -18,6 +18,20 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+import {
+  SCAN_FREQUENCY_OPTIONS,
+  WEEKDAY_OPTIONS,
+  PLACEHOLDER_TEXT,
+  LABEL_TEXT,
+} from './constants';
+import {
+  DATE_RANGE,
+  HOUR_RANGE,
+  MINUTE_RANGE,
+  formatHourLabel,
+  formatMinuteValue,
+} from '@/lib/dateTimeUtils';
+
 interface ScanFrequencyFieldsProps {
   control: Control<CloudFormData>;
 }
@@ -99,7 +113,7 @@ export default function ScanFrequencyFields({
 
   return (
     <div className="space-y-4">
-      <FormLabel>Set Scan Frequency</FormLabel>
+      <FormLabel>{LABEL_TEXT.SCAN_FREQUENCY}</FormLabel>
       <div className="text-sm text-gray-600">
         Scan Schedule: {getScanScheduleText()}
       </div>
@@ -113,14 +127,15 @@ export default function ScanFrequencyFields({
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select frequency" />
+                  <SelectValue placeholder={PLACEHOLDER_TEXT.FREQUENCY} />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="HOUR">Hourly</SelectItem>
-                <SelectItem value="DAY">Daily</SelectItem>
-                <SelectItem value="WEEK">Weekly</SelectItem>
-                <SelectItem value="MONTH">Monthly</SelectItem>
+                {SCAN_FREQUENCY_OPTIONS.map(option => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <FormMessage />
@@ -138,7 +153,7 @@ export default function ScanFrequencyFields({
               <FormLabel
                 className={`w-32 text-right ${frequency !== 'MONTH' ? 'text-gray-400' : ''}`}
               >
-                Date
+                {LABEL_TEXT.DATE}
               </FormLabel>
               <Select
                 onValueChange={field.onChange}
@@ -153,9 +168,9 @@ export default function ScanFrequencyFields({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {Array.from({ length: 28 }, (_, i) => (
-                    <SelectItem key={i + 1} value={(i + 1).toString()}>
-                      {i + 1}
+                  {DATE_RANGE.map(date => (
+                    <SelectItem key={date} value={date.toString()}>
+                      {date}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -176,7 +191,7 @@ export default function ScanFrequencyFields({
               <FormLabel
                 className={`w-32 text-right ${frequency !== 'WEEK' ? 'text-gray-400' : ''}`}
               >
-                Day of Week
+                {LABEL_TEXT.DAY_OF_WEEK}
               </FormLabel>
               <Select
                 onValueChange={field.onChange}
@@ -191,13 +206,11 @@ export default function ScanFrequencyFields({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="MON">Monday</SelectItem>
-                  <SelectItem value="TUE">Tuesday</SelectItem>
-                  <SelectItem value="WED">Wednesday</SelectItem>
-                  <SelectItem value="THU">Thursday</SelectItem>
-                  <SelectItem value="FRI">Friday</SelectItem>
-                  <SelectItem value="SAT">Saturday</SelectItem>
-                  <SelectItem value="SUN">Sunday</SelectItem>
+                  {WEEKDAY_OPTIONS.map(option => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -216,7 +229,7 @@ export default function ScanFrequencyFields({
               <FormLabel
                 className={`w-32 text-right ${frequency === 'HOUR' ? 'text-gray-400' : ''}`}
               >
-                Hour
+                {LABEL_TEXT.HOUR}
               </FormLabel>
               <Select
                 onValueChange={field.onChange}
@@ -227,19 +240,13 @@ export default function ScanFrequencyFields({
                   <SelectTrigger
                     className={`flex-1 ${frequency === 'HOUR' ? 'cursor-not-allowed bg-gray-100' : ''}`}
                   >
-                    <SelectValue placeholder="Select hour" />
+                    <SelectValue placeholder={PLACEHOLDER_TEXT.HOUR} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {Array.from({ length: 24 }, (_, i) => (
-                    <SelectItem key={i} value={i.toString()}>
-                      {i === 0
-                        ? '12 AM'
-                        : i < 12
-                          ? `${i} AM`
-                          : i === 12
-                            ? '12 PM'
-                            : `${i - 12} PM`}
+                  {HOUR_RANGE.map(hour => (
+                    <SelectItem key={hour} value={hour.toString()}>
+                      {formatHourLabel(hour)}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -257,20 +264,19 @@ export default function ScanFrequencyFields({
         render={({ field }) => (
           <FormItem>
             <div className="flex items-center gap-4">
-              <FormLabel className="w-32 text-right">Minute</FormLabel>
+              <FormLabel className="w-32 text-right">
+                {LABEL_TEXT.MINUTE}
+              </FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger className="flex-1">
-                    <SelectValue placeholder="Select minute" />
+                    <SelectValue placeholder={PLACEHOLDER_TEXT.MINUTE} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <SelectItem
-                      key={i * 5}
-                      value={(i * 5).toString().padStart(2, '0')}
-                    >
-                      {(i * 5).toString().padStart(2, '0')}
+                  {MINUTE_RANGE.map(minute => (
+                    <SelectItem key={minute} value={formatMinuteValue(minute)}>
+                      {formatMinuteValue(minute)}
                     </SelectItem>
                   ))}
                 </SelectContent>
