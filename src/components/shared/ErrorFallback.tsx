@@ -5,8 +5,8 @@ interface ErrorFallbackProps {
 
 function ErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
   return (
-    <div className="flex min-h-[400px] flex-col items-center justify-center p-8">
-      <div className="text-center">
+    <div className="flex min-h-[400px] w-full flex-col items-center justify-center p-8">
+      <div className="w-full text-center">
         <h2 className="mb-4 text-2xl font-bold text-red-600">
           Something went wrong
         </h2>
