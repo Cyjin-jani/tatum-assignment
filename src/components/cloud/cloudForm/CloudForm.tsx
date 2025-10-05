@@ -7,12 +7,12 @@ import { CloudFormData } from '@/lib/cloud-form-schema';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 
-import BasicInfoSection from './sections/BasicInfoSection';
-import CredentialsSection from './sections/CredentialsSection';
-import RegionSection from './sections/RegionSection';
-import ScanScheduleSection from './sections/ScanScheduleSection';
-import EventSection from './sections/EventSection';
-import CloudGroupSection from './sections/CloudGroupSection';
+import { BasicInfoSection } from './sections/BasicInfoSection';
+import { CredentialsSection } from './sections/CredentialsSection';
+import { RegionSection } from './sections/RegionSection';
+import { ScanScheduleSection } from './sections/ScanScheduleSection';
+import { EventSection } from './sections/EventSection';
+import { CloudGroupSection } from './sections/CloudGroupSection';
 
 interface CloudFormProps {
   form: UseFormReturn<CloudFormData>;

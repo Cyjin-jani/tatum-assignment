@@ -11,7 +11,7 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
-import EventSourceFields from '../EventSourceFields';
+import { EventSourceFields } from '../EventSourceFields';
 import {
   BOOLEAN_RADIO_OPTIONS,
   LABEL_TEXT,
@@ -23,7 +23,7 @@ interface EventSectionProps {
   control: Control<CloudFormData>;
 }
 
-export default function EventSection({ provider, control }: EventSectionProps) {
+export function EventSection({ provider, control }: EventSectionProps) {
   return (
     <div className="space-y-6">
       {/* Event Integration */}

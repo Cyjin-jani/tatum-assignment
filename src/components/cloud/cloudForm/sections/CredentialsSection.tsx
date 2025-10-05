@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import CredentialsFields from '../CredentialsFields';
+import { CredentialsFields } from '../CredentialsFields';
 import {
   AWS_CREDENTIAL_TYPE_OPTIONS,
   PLACEHOLDER_TEXT,
@@ -29,7 +29,7 @@ interface CredentialsSectionProps {
   control: Control<CloudFormData>;
 }
 
-export default function CredentialsSection({
+export function CredentialsSection({
   provider,
   control,
 }: CredentialsSectionProps) {

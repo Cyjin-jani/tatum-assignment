@@ -20,7 +20,7 @@ interface CloudGroupSectionProps {
   control: Control<CloudFormData>;
 }
 
-export default function CloudGroupSection({ control }: CloudGroupSectionProps) {
+export function CloudGroupSection({ control }: CloudGroupSectionProps) {
   return (
     <div className="space-y-6">
       {/* Cloud Group Name */}

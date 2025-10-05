@@ -36,9 +36,7 @@ interface ScanFrequencyFieldsProps {
   control: Control<CloudFormData>;
 }
 
-export default function ScanFrequencyFields({
-  control,
-}: ScanFrequencyFieldsProps) {
+export function ScanFrequencyFields({ control }: ScanFrequencyFieldsProps) {
   // TODO: Frequency 변경 시 스마트 초기화 구현
   // - Hour, Minute은 유지 (모든 frequency에서 공통 사용)
   // - Date, Weekday는 해당 frequency가 아닐 때 초기화

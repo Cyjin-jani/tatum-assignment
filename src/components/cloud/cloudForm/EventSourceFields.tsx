@@ -17,7 +17,7 @@ interface EventSourceFieldsProps {
   control: Control<CloudFormData>;
 }
 
-export default function EventSourceFields({
+export function EventSourceFields({
   provider,
   control,
 }: EventSourceFieldsProps) {

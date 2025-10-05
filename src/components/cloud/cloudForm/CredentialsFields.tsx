@@ -17,7 +17,7 @@ interface CredentialsFieldsProps {
   control: Control<CloudFormData>;
 }
 
-export default function CredentialsFields({
+export function CredentialsFields({
   provider,
   control,
 }: CredentialsFieldsProps) {

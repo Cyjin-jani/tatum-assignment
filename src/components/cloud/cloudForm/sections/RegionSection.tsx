@@ -24,7 +24,7 @@ interface RegionSectionProps {
   control: Control<CloudFormData>;
 }
 
-export default function RegionSection({ control }: RegionSectionProps) {
+export function RegionSection({ control }: RegionSectionProps) {
   return (
     <div className="space-y-6">
       {/* Region */}
