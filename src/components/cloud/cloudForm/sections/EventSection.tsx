@@ -37,7 +37,7 @@ export default function EventSection({ provider, control }: EventSectionProps) {
         name="eventProcessEnabled"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>{LABEL_TEXT.EVENT_PROCESS}</FormLabel>
+            <FormLabel className="mb-1">{LABEL_TEXT.EVENT_PROCESS}</FormLabel>
             <FormControl>
               <RadioGroup
                 onValueChange={value => field.onChange(value === 'true')}
@@ -71,7 +71,7 @@ export default function EventSection({ provider, control }: EventSectionProps) {
         name="userActivityEnabled"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>{LABEL_TEXT.USER_ACTIVITY}</FormLabel>
+            <FormLabel className="mb-1">{LABEL_TEXT.USER_ACTIVITY}</FormLabel>
             <FormControl>
               <RadioGroup
                 onValueChange={value => field.onChange(value === 'true')}

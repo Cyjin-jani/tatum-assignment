@@ -34,7 +34,7 @@ export default function ScanScheduleSection({
         name="scheduleScanEnabled"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>{LABEL_TEXT.SCAN_SCHEDULE}</FormLabel>
+            <FormLabel className="mb-2">{LABEL_TEXT.SCAN_SCHEDULE}</FormLabel>
             <FormControl>
               <RadioGroup
                 onValueChange={value => field.onChange(value === 'true')}
