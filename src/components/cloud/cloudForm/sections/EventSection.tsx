@@ -11,7 +11,7 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
-import EventSourceFields from '../EventSourceFields';
+import { EventSourceFields } from '../EventSourceFields';
 import {
   BOOLEAN_RADIO_OPTIONS,
   LABEL_TEXT,
@@ -23,7 +23,7 @@ interface EventSectionProps {
   control: Control<CloudFormData>;
 }
 
-export default function EventSection({ provider, control }: EventSectionProps) {
+export function EventSection({ provider, control }: EventSectionProps) {
   return (
     <div className="space-y-6">
       {/* Event Integration */}
@@ -37,7 +37,7 @@ export default function EventSection({ provider, control }: EventSectionProps) {
         name="eventProcessEnabled"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>{LABEL_TEXT.EVENT_PROCESS}</FormLabel>
+            <FormLabel className="mb-1">{LABEL_TEXT.EVENT_PROCESS}</FormLabel>
             <FormControl>
               <RadioGroup
                 onValueChange={value => field.onChange(value === 'true')}
@@ -71,7 +71,7 @@ export default function EventSection({ provider, control }: EventSectionProps) {
         name="userActivityEnabled"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>{LABEL_TEXT.USER_ACTIVITY}</FormLabel>
+            <FormLabel className="mb-1">{LABEL_TEXT.USER_ACTIVITY}</FormLabel>
             <FormControl>
               <RadioGroup
                 onValueChange={value => field.onChange(value === 'true')}

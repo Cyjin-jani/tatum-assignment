@@ -27,7 +27,7 @@ interface BasicInfoSectionProps {
   control: Control<CloudFormData>;
 }
 
-export default function BasicInfoSection({ control }: BasicInfoSectionProps) {
+export function BasicInfoSection({ control }: BasicInfoSectionProps) {
   return (
     <div className="space-y-6">
       {/* Cloud Name */}

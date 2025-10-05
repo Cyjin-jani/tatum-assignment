@@ -3,7 +3,7 @@
 import { CloudTable } from './CloudTable';
 import { CreateCloudButton } from './CreateCloudButton';
 
-function CloudList() {
+export function CloudList() {
   return (
     <div className="container mx-auto py-6">
       <div className="mb-6 flex items-center justify-between">
@@ -14,5 +14,3 @@ function CloudList() {
     </div>
   );
 }
-
-export default CloudList;

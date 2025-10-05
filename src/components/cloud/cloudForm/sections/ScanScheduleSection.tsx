@@ -11,7 +11,7 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
-import ScanFrequencyFields from '../ScanFrequencyFields';
+import { ScanFrequencyFields } from '../ScanFrequencyFields';
 import {
   BOOLEAN_RADIO_OPTIONS,
   LABEL_TEXT,
@@ -22,7 +22,7 @@ interface ScanScheduleSectionProps {
   control: Control<CloudFormData>;
 }
 
-export default function ScanScheduleSection({
+export function ScanScheduleSection({
   scheduleScanEnabled,
   control,
 }: ScanScheduleSectionProps) {
@@ -34,7 +34,7 @@ export default function ScanScheduleSection({
         name="scheduleScanEnabled"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>{LABEL_TEXT.SCAN_SCHEDULE}</FormLabel>
+            <FormLabel className="mb-2">{LABEL_TEXT.SCAN_SCHEDULE}</FormLabel>
             <FormControl>
               <RadioGroup
                 onValueChange={value => field.onChange(value === 'true')}

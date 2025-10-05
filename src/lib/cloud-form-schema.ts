@@ -1,4 +1,12 @@
 import { z } from 'zod';
+import {
+  validateScheduleScanSetting,
+  validateFrequency,
+  validateMinute,
+  validateHour,
+  validateDate,
+  validateWeekday,
+} from './cloudFormValidationHelpers';
 
 // AWS Credential Schema
 const awsCredentialSchema = z.object({
@@ -34,51 +42,81 @@ const gcpEventSourceSchema = z.object({
   storageAccountName: z.string().optional(),
 });
 
-// Schedule Scan Setting Schema
-const scheduleScanSettingSchema = z.object({
-  frequency: z.enum(['HOUR', 'DAY', 'WEEK', 'MONTH']).optional(),
-  date: z.string().optional(),
-  weekday: z.enum(['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']).optional(),
-  hour: z.string().optional(),
-  minute: z.string().optional(),
-});
-
 // Main Cloud Form Schema
-export const cloudFormSchema = z.object({
-  // 기본 정보
-  name: z.string().min(1, '클라우드 이름을 입력해주세요'),
-  provider: z.enum(['AWS', 'AZURE', 'GCP']),
-  cloudGroupName: z.array(z.string()).optional(),
+export const cloudFormSchema = z
+  .object({
+    // 기본 정보
+    name: z.string().min(1, '클라우드 이름을 입력해주세요'),
+    provider: z.enum(['AWS', 'AZURE', 'GCP']),
+    cloudGroupName: z.array(z.string()).optional(),
 
-  // 스캔 설정
-  scheduleScanEnabled: z.boolean(),
-  scheduleScanSetting: scheduleScanSettingSchema.optional(),
+    // 스캔 설정
+    scheduleScanEnabled: z.boolean(),
+    scheduleScanSetting: z
+      .object({
+        frequency: z.enum(['HOUR', 'DAY', 'WEEK', 'MONTH']).optional(),
+        date: z.string().optional(),
+        weekday: z
+          .enum(['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'])
+          .optional(),
+        hour: z.string().optional(),
+        minute: z.string().optional(),
+      })
+      .optional(),
 
-  // 이벤트 설정
-  eventProcessEnabled: z.boolean(),
-  userActivityEnabled: z.boolean(),
+    // 이벤트 설정
+    eventProcessEnabled: z.boolean(),
+    userActivityEnabled: z.boolean(),
 
-  // Credentials (Provider별 분기)
-  credentials: z.union([
-    awsCredentialSchema,
-    azureCredentialSchema,
-    gcpCredentialSchema,
-  ]),
+    // Credentials (Provider별 분기)
+    credentials: z.union([
+      awsCredentialSchema,
+      azureCredentialSchema,
+      gcpCredentialSchema,
+    ]),
 
-  credentialType: z.union([
-    z.enum(['ACCESS_KEY', 'ASSUME_ROLE', 'ROLES_ANYWHERE']),
-    z.enum(['APPLICATION']),
-    z.enum(['JSON_TEXT']),
-  ]),
+    credentialType: z.union([
+      z.enum(['ACCESS_KEY', 'ASSUME_ROLE', 'ROLES_ANYWHERE']),
+      z.enum(['APPLICATION']),
+      z.enum(['JSON_TEXT']),
+    ]),
 
-  // Event Source (Provider별 분기)
-  eventSource: z
-    .union([awsEventSourceSchema, azureEventSourceSchema, gcpEventSourceSchema])
-    .optional(),
+    // Event Source (Provider별 분기)
+    eventSource: z
+      .union([
+        awsEventSourceSchema,
+        azureEventSourceSchema,
+        gcpEventSourceSchema,
+      ])
+      .optional(),
 
-  // 공통 설정
-  regionList: z.array(z.string()).min(1, '리전을 선택해주세요'),
-  proxyUrl: z.string().optional(),
-});
+    // 공통 설정
+    regionList: z.array(z.string()).min(1, '리전을 선택해주세요'),
+    proxyUrl: z.string().optional(),
+  })
+  .refine(validateScheduleScanSetting, {
+    message: '스캔 스케줄 설정을 입력해주세요',
+    path: ['scheduleScanSetting'],
+  })
+  .refine(validateFrequency, {
+    message: '스캔 주기를 선택해주세요',
+    path: ['scheduleScanSetting', 'frequency'],
+  })
+  .refine(validateMinute, {
+    message: '분을 선택해주세요',
+    path: ['scheduleScanSetting', 'minute'],
+  })
+  .refine(validateHour, {
+    message: '시간을 선택해주세요',
+    path: ['scheduleScanSetting', 'hour'],
+  })
+  .refine(validateDate, {
+    message: '날짜를 선택해주세요',
+    path: ['scheduleScanSetting', 'date'],
+  })
+  .refine(validateWeekday, {
+    message: '요일을 선택해주세요',
+    path: ['scheduleScanSetting', 'weekday'],
+  });
 
 export type CloudFormData = z.infer<typeof cloudFormSchema>;

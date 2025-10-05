@@ -17,7 +17,7 @@ interface CredentialsFieldsProps {
   control: Control<CloudFormData>;
 }
 
-export default function CredentialsFields({
+export function CredentialsFields({
   provider,
   control,
 }: CredentialsFieldsProps) {
@@ -25,7 +25,7 @@ export default function CredentialsFields({
 
   return (
     <div className="space-y-4">
-      <h4 className="text-sm font-medium text-gray-900">Credentials</h4>
+      <h4 className="text-md font-medium text-gray-900">Credentials</h4>
       {config.credentialFields.map(field => (
         <FormField
           key={field.name}

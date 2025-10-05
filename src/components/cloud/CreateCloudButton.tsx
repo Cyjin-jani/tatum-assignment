@@ -50,15 +50,15 @@ export function CreateCloudButton() {
     setIsModalOpen(false);
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
   const handleModalChange = (open: boolean) => {
     setIsModalOpen(open);
     if (!open) {
       form.reset();
     }
+  };
+
+  const handleCancel = () => {
+    handleModalChange(false);
   };
 
   return (
