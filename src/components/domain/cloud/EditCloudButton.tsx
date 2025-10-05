@@ -66,6 +66,7 @@ export function EditCloudButton({ cloudData, onEdit }: EditCloudButtonProps) {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         title="Edit Cloud"
+        className="max-w-xl"
       >
         <CloudForm
           form={form}

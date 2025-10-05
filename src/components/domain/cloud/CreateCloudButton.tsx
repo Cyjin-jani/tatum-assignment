@@ -60,6 +60,7 @@ export function CreateCloudButton() {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         title="Create Cloud"
+        className="max-w-xl"
       >
         <CloudForm
           form={form}
