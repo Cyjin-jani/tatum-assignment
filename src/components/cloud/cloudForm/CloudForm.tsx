@@ -30,7 +30,7 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
           <form
             id="cloud-form"
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 pb-6"
+            className="space-y-6 pb-10"
           >
             {/* 기본 정보 */}
             <BasicInfoSection control={form.control} />
