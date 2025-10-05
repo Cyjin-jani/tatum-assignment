@@ -1,0 +1,85 @@
+import { Control } from 'react-hook-form';
+import { CloudFormData } from '@/lib/cloud-form-schema';
+import { providerConfigs } from '@/lib/provider-configs';
+type Provider = 'AWS' | 'AZURE' | 'GCP';
+
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+
+interface ProviderSpecificFieldsProps {
+  provider: Provider;
+  control: Control<CloudFormData>;
+}
+
+export const ProviderSpecificFields = ({
+  provider,
+  control,
+}: ProviderSpecificFieldsProps) => {
+  const config = providerConfigs[provider];
+
+  return (
+    <div className="space-y-6">
+      {/* Credentials Section */}
+      <div className="space-y-4">
+        <h4 className="text-sm font-medium text-gray-900">Credentials</h4>
+        {config.credentialFields.map(field => (
+          <FormField
+            key={field.name}
+            control={control}
+            name={`credentials.${field.name}` as any}
+            render={({ field: formField }) => (
+              <FormItem>
+                <FormLabel>
+                  {field.label}{' '}
+                  {field.required && <span className="text-red-500">*</span>}
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    {...formField}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
+      </div>
+
+      {/* Event Source Section */}
+      <div className="space-y-4">
+        <h4 className="text-sm font-medium text-gray-900">Event Integration</h4>
+        {config.eventSourceFields.map(field => (
+          <FormField
+            key={field.name}
+            control={control}
+            name={`eventSource.${field.name}` as any}
+            render={({ field: formField }) => (
+              <FormItem>
+                <FormLabel>
+                  {field.label}{' '}
+                  {field.required && <span className="text-red-500">*</span>}
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    {...formField}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};

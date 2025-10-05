@@ -3,7 +3,7 @@ import { TableHead, TableHeader, TableRow } from '@/components/ui/table';
 export function CloudTableHeader() {
   return (
     <TableHeader>
-      <TableRow>
+      <TableRow className="hover:bg-transparent">
         <TableHead>Provider</TableHead>
         <TableHead>Account</TableHead>
         <TableHead>Cloud Group</TableHead>

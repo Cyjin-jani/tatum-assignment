@@ -2,6 +2,7 @@ import { Cloud } from '@/types';
 import { TableCell, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { CloudBadge } from './CloudBadge';
+import { EditCloudButton } from './EditCloudButton';
 
 interface CloudTableRowProps {
   cloud: Cloud;
@@ -31,13 +32,7 @@ export function CloudTableRow({ cloud }: CloudTableRowProps) {
       <TableCell>adr***</TableCell>
       <TableCell className="sticky right-0 z-10 bg-white">
         <div className="flex gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            className="cursor-pointer border-blue-200 bg-blue-100 text-blue-700 transition-colors hover:border-blue-600 hover:bg-blue-600 hover:text-white"
-          >
-            Edit
-          </Button>
+          <EditCloudButton cloudData={cloud} />
           <Button
             size="sm"
             variant="destructive"
