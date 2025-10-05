@@ -61,6 +61,13 @@ export const BOOLEAN_RADIO_OPTIONS = [
   { value: 'false', label: 'Disabled' },
 ] as const;
 
+// Cloud Group 옵션
+export const CLOUD_GROUP_OPTIONS = [
+  { value: 'aws-group', label: 'AWS Group' },
+  { value: 'azure-group', label: 'Azure Group' },
+  { value: 'gcp-group', label: 'GCP Group' },
+];
+
 // 플레이스홀더 텍스트
 export const PLACEHOLDER_TEXT = {
   CLOUD_NAME: 'Please enter the cloud name',
@@ -68,7 +75,7 @@ export const PLACEHOLDER_TEXT = {
   CREDENTIAL_METHOD: 'Select method',
   REGION: 'Select region',
   PROXY_URL: 'Please enter the proxy URL',
-  CLOUD_GROUP_NAME: 'Please enter the cloud group name',
+  CLOUD_GROUP_NAME: 'Select cloud groups',
   FREQUENCY: 'Select frequency',
   HOUR: 'Select hour',
   MINUTE: 'Select minute',

@@ -8,9 +8,13 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { MultiSelect } from '@/components/ui/multi-select';
 
-import { PLACEHOLDER_TEXT, LABEL_TEXT } from '@/components/cloud/constants';
+import {
+  PLACEHOLDER_TEXT,
+  LABEL_TEXT,
+  CLOUD_GROUP_OPTIONS,
+} from '@/components/cloud/constants';
 
 interface CloudGroupSectionProps {
   control: Control<CloudFormData>;
@@ -20,7 +24,6 @@ export default function CloudGroupSection({ control }: CloudGroupSectionProps) {
   return (
     <div className="space-y-6">
       {/* Cloud Group Name */}
-      {/* TODO: Multi-select 컴포넌트로 변경 필요 */}
       <FormField
         control={control}
         name="cloudGroupName"
@@ -28,17 +31,11 @@ export default function CloudGroupSection({ control }: CloudGroupSectionProps) {
           <FormItem>
             <FormLabel>{LABEL_TEXT.CLOUD_GROUP_NAME}</FormLabel>
             <FormControl>
-              <Input
+              <MultiSelect
+                options={CLOUD_GROUP_OPTIONS}
+                value={field.value || []}
+                onChange={field.onChange}
                 placeholder={PLACEHOLDER_TEXT.CLOUD_GROUP_NAME}
-                {...field}
-                value={field.value?.join(', ') || ''}
-                onChange={e =>
-                  field.onChange(
-                    e.target.value
-                      ? e.target.value.split(',').map(s => s.trim())
-                      : []
-                  )
-                }
               />
             </FormControl>
             <FormMessage />
