@@ -52,6 +52,10 @@ export function CreateCloudButton() {
 
   const handleCancel = () => {
     setIsModalOpen(false);
+    // 모달 닫힘 애니메이션 후 form 초기화
+    setTimeout(() => {
+      form.reset();
+    }, 200);
   };
 
   const handleModalChange = (open: boolean) => {
