@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 
-import CloudListPage from '@/components/domain/cloud/CloudListPage';
+import CloudList from '@/components/cloud/CloudList';
 
 export default function Home() {
-  return <CloudListPage />;
+  return <CloudList />;
 }
