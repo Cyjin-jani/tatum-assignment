@@ -11,40 +11,47 @@ import { Cloud } from '@/types';
 
 interface EditCloudButtonProps {
   cloudData: Cloud;
-  onEdit?: (updatedData: Cloud) => void;
 }
 
-export function EditCloudButton({ cloudData, onEdit }: EditCloudButtonProps) {
+export function EditCloudButton({ cloudData }: EditCloudButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Edit용 useForm - 기존 데이터로 초기화
   const form = useForm<CloudFormData>({
     resolver: zodResolver(cloudFormSchema),
     defaultValues: {
-      name: cloudData.name,
-      provider: cloudData.provider,
+      name: cloudData.name || '',
+      provider: cloudData.provider || 'AWS',
       cloudGroupName: cloudData.cloudGroupName || [],
-      scheduleScanEnabled: cloudData.scheduleScanEnabled,
-      scheduleScanSetting: cloudData.scheduleScanSetting,
-      eventProcessEnabled: cloudData.eventProcessEnabled,
-      userActivityEnabled: cloudData.userActivityEnabled,
-      credentials: cloudData.credentials,
-      credentialType: cloudData.credentialType,
-      eventSource: cloudData.eventSource,
-      regionList: cloudData.regionList,
-      proxyUrl: cloudData.proxyUrl,
+      scheduleScanEnabled: cloudData.scheduleScanEnabled || false,
+      scheduleScanSetting: cloudData.scheduleScanSetting || {
+        frequency: undefined,
+        date: undefined,
+        weekday: undefined,
+        hour: undefined,
+        minute: undefined,
+      },
+      eventProcessEnabled: cloudData.eventProcessEnabled || false,
+      userActivityEnabled: cloudData.userActivityEnabled || false,
+      credentials: cloudData.credentials || {
+        accessKeyId: '',
+        secretAccessKey: '',
+        roleArn: '',
+      },
+      credentialType: cloudData.credentialType || 'ACCESS_KEY',
+      eventSource: cloudData.eventSource || {
+        cloudTrailName: '',
+      },
+      regionList: cloudData.regionList || [],
+      proxyUrl: cloudData.proxyUrl || '',
     },
   });
 
   const handleEdit = () => {
-    console.log('Edit cloud button clicked');
     setIsModalOpen(true);
   };
 
   const handleSubmit = (data: CloudFormData) => {
     console.log('Form submitted:', data);
-    // TODO: API 호출로 클라우드 업데이트
-    onEdit?.(data as Cloud);
     setIsModalOpen(false);
   };
 

@@ -11,7 +11,6 @@ import { CloudFormData, cloudFormSchema } from '@/lib/cloud-form-schema';
 export function CreateCloudButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // CreateCloudButton에서 useForm 관리
   const form = useForm<CloudFormData>({
     resolver: zodResolver(cloudFormSchema),
     defaultValues: {
@@ -19,28 +18,35 @@ export function CreateCloudButton() {
       provider: 'AWS',
       cloudGroupName: [],
       scheduleScanEnabled: false,
-      scheduleScanSetting: undefined,
+      scheduleScanSetting: {
+        frequency: undefined,
+        date: undefined,
+        weekday: undefined,
+        hour: undefined,
+        minute: undefined,
+      },
       eventProcessEnabled: false,
       userActivityEnabled: false,
       credentials: {
         accessKeyId: '',
         secretAccessKey: '',
+        roleArn: '',
       },
       credentialType: 'ACCESS_KEY',
-      eventSource: undefined,
+      eventSource: {
+        cloudTrailName: '',
+      },
       regionList: [],
       proxyUrl: '',
     },
   });
 
   const handleCreate = () => {
-    console.log('Create cloud button clicked');
     setIsModalOpen(true);
   };
 
   const handleSubmit = (data: CloudFormData) => {
     console.log('Form submitted:', data);
-    // TODO: API 호출로 클라우드 생성
     setIsModalOpen(false);
   };
 
