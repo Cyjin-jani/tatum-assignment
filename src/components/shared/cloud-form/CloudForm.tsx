@@ -24,7 +24,9 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
-import { ProviderSpecificFields } from './ProviderSpecificFields';
+import CredentialsFields from './CredentialsFields';
+import EventSourceFields from './EventSourceFields';
+import ScanFrequencyFields from './ScanFrequencyFields';
 
 interface CloudFormProps {
   form: UseFormReturn<CloudFormData>;
@@ -37,13 +39,14 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
   const scheduleScanEnabled = form.watch('scheduleScanEnabled');
 
   return (
-    <div className="max-h-[80vh] overflow-y-auto">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          {/* 기본 설정 섹션 */}
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold">기본 설정</h3>
-
+    <div className="flex h-[80vh] flex-col">
+      <div className="flex-1 overflow-y-auto pr-2">
+        <Form {...form}>
+          <form
+            id="cloud-form"
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 pb-6"
+          >
             {/* Cloud Name */}
             <FormField
               control={form.control}
@@ -76,7 +79,7 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select provider" />
                       </SelectTrigger>
                     </FormControl>
@@ -107,7 +110,7 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select method" />
                       </SelectTrigger>
                     </FormControl>
@@ -124,11 +127,14 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
               )}
             />
 
-            {/* Provider-specific fields */}
-            <ProviderSpecificFields
-              provider={provider}
-              control={form.control}
-            />
+            {/* 구분선 */}
+            <div className="border-t" />
+
+            {/* Credentials */}
+            <CredentialsFields provider={provider} control={form.control} />
+
+            {/* 구분선 */}
+            <div className="border-t" />
 
             {/* Region */}
             <FormField
@@ -144,7 +150,7 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
                     value={field.value[0]}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select region" />
                       </SelectTrigger>
                     </FormControl>
@@ -178,11 +184,9 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
                 </FormItem>
               )}
             />
-          </div>
 
-          {/* 스캔 설정 섹션 */}
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold">스캔 설정</h3>
+            {/* 구분선 */}
+            <div className="border-t" />
 
             {/* Scan Schedule Setting */}
             <FormField
@@ -214,118 +218,119 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
 
             {/* Scan Frequency (조건부 렌더링) */}
             {scheduleScanEnabled && (
-              <div className="space-y-4">
-                <FormLabel>Set Scan Frequency</FormLabel>
-                <div className="mb-4 text-sm text-gray-600">
-                  Scan Schedule: Daily 12:00 AM
-                </div>
-
-                <FormField
-                  control={form.control}
-                  name="scheduleScanSetting.frequency"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Frequency</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select frequency" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="HOUR">Hourly</SelectItem>
-                          <SelectItem value="DAY">Daily</SelectItem>
-                          <SelectItem value="WEEK">Weekly</SelectItem>
-                          <SelectItem value="MONTH">Monthly</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="grid grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="scheduleScanSetting.hour"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Hour</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select hour" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {Array.from({ length: 24 }, (_, i) => (
-                              <SelectItem key={i} value={i.toString()}>
-                                {i === 0
-                                  ? '12 AM'
-                                  : i < 12
-                                    ? `${i} AM`
-                                    : i === 12
-                                      ? '12 PM'
-                                      : `${i - 12} PM`}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="scheduleScanSetting.minute"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Minute</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select minute" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {Array.from({ length: 12 }, (_, i) => (
-                              <SelectItem
-                                key={i * 5}
-                                value={(i * 5).toString().padStart(2, '0')}
-                              >
-                                {(i * 5).toString().padStart(2, '0')}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </div>
+              <>
+                {/* 구분선 */}
+                <div className="border-t" />
+                <ScanFrequencyFields control={form.control} />
+              </>
             )}
-          </div>
 
-          {/* 버튼 영역 */}
-          <div className="flex justify-end space-x-4 border-t pt-6">
-            <Button type="button" variant="outline" onClick={onCancel}>
-              Cancel
-            </Button>
-            <Button type="submit">Review</Button>
-          </div>
-        </form>
-      </Form>
+            {/* 구분선 */}
+            <div className="border-t" />
+
+            {/* Event Integration */}
+            <EventSourceFields provider={provider} control={form.control} />
+
+            {/* 구분선 */}
+            <div className="border-t" />
+
+            {/* Event Process Enabled */}
+            <FormField
+              control={form.control}
+              name="eventProcessEnabled"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Event Process</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={value => field.onChange(value === 'true')}
+                      value={field.value ? 'true' : 'false'}
+                      className="flex space-x-6"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="true" id="event-enabled" />
+                        <Label htmlFor="event-enabled">Enabled</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="false" id="event-disabled" />
+                        <Label htmlFor="event-disabled">Disabled</Label>
+                      </div>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* User Activity Enabled */}
+            <FormField
+              control={form.control}
+              name="userActivityEnabled"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>User Activity</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={value => field.onChange(value === 'true')}
+                      value={field.value ? 'true' : 'false'}
+                      className="flex space-x-6"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="true" id="activity-enabled" />
+                        <Label htmlFor="activity-enabled">Enabled</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="false" id="activity-disabled" />
+                        <Label htmlFor="activity-disabled">Disabled</Label>
+                      </div>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="border-t" />
+
+            {/* Cloud Group Name */}
+            {/* TODO: Multi-select 컴포넌트로 변경 필요 */}
+            <FormField
+              control={form.control}
+              name="cloudGroupName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Cloud Group Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Please enter the cloud group name"
+                      {...field}
+                      value={field.value?.join(', ') || ''}
+                      onChange={e =>
+                        field.onChange(
+                          e.target.value
+                            ? e.target.value.split(',').map(s => s.trim())
+                            : []
+                        )
+                      }
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+      </div>
+
+      {/* 버튼 영역 - 고정 */}
+      <div className="flex justify-end space-x-4 border-t bg-white pt-6">
+        <Button type="button" variant="outline" onClick={onCancel}>
+          Cancel
+        </Button>
+        <Button type="submit" form="cloud-form">
+          Review
+        </Button>
+      </div>
     </div>
   );
 };
