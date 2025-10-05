@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { CloudFormData } from '@/lib/cloud-form-schema';
 
@@ -22,14 +23,29 @@ interface CloudFormProps {
 export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
   const provider = form.watch('provider');
   const scheduleScanEnabled = form.watch('scheduleScanEnabled');
+  const formContainerRef = useRef<HTMLDivElement>(null);
+
+  // Note: 폼 유효성 검사 실패 시 첫 번째 에러 필드로 자동 스크롤
+  // React Hook Form의 shouldFocusError(기본값 true)가 포커스는 처리하지만,
+  // 중첩된 스크롤 컨테이너에서는 에러 필드가 뷰포트 밖에 있을 수 있어
+  // 사용자가 에러를 인지하지 못하는 문제를 해결하기 위해 명시적으로 스크롤 처리
+  const handleFormError = () => {
+    const firstErrorElement = formContainerRef.current?.querySelector(
+      '[aria-invalid="true"]'
+    );
+    firstErrorElement?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  };
 
   return (
     <div className="flex h-[80vh] flex-col">
-      <div className="flex-1 overflow-y-auto pr-2">
+      <div ref={formContainerRef} className="flex-1 overflow-y-auto pr-2">
         <Form {...form}>
           <form
             id="cloud-form"
-            onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit, handleFormError)}
             className="space-y-6 pb-10"
           >
             {/* 기본 정보 */}
