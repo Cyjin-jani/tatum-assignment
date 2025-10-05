@@ -61,7 +61,11 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
         <Button type="button" variant="outline" onClick={onCancel}>
           Cancel
         </Button>
-        <Button type="submit" form="cloud-form">
+        <Button
+          type="submit"
+          form="cloud-form"
+          className="bg-blue-600 text-white hover:bg-blue-700"
+        >
           Review
         </Button>
       </div>
