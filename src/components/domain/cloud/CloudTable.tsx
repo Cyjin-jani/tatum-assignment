@@ -1,23 +1,24 @@
-import { Cloud } from '@/types';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Table, TableBody } from '@/components/ui/table';
+import ErrorFallback from '@/components/shared/ErrorFallback';
 import { CloudTableHeader } from './CloudTableHeader';
-import { CloudTableRow } from './CloudTableRow';
+import { CloudTableRows } from './CloudTableRows';
+import { CloudTableSkeleton } from './CloudTableSkeleton';
 
-interface CloudTableProps {
-  clouds: Cloud[];
-}
-
-export function CloudTable({ clouds }: CloudTableProps) {
+export function CloudTable() {
   return (
     <div className="w-full">
-      <Table>
-        <CloudTableHeader />
-        <TableBody>
-          {clouds.map(cloud => (
-            <CloudTableRow key={cloud.id} cloud={cloud} />
-          ))}
-        </TableBody>
-      </Table>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Table>
+          <CloudTableHeader />
+          <TableBody>
+            <Suspense fallback={<CloudTableSkeleton />}>
+              <CloudTableRows />
+            </Suspense>
+          </TableBody>
+        </Table>
+      </ErrorBoundary>
     </div>
   );
 }
