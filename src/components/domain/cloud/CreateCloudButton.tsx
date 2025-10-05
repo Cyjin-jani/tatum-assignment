@@ -1,29 +1,71 @@
 'use client';
 
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { Modal } from '@/components/shared/Modal';
+import { CloudForm } from '@/components/shared/cloud-form/CloudForm';
+import { CloudFormData, cloudFormSchema } from '@/lib/cloud-form-schema';
 
 export function CreateCloudButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // CreateCloudButton에서 useForm 관리
+  const form = useForm<CloudFormData>({
+    resolver: zodResolver(cloudFormSchema),
+    defaultValues: {
+      name: '',
+      provider: 'AWS',
+      cloudGroupName: [],
+      scheduleScanEnabled: false,
+      scheduleScanSetting: undefined,
+      eventProcessEnabled: false,
+      userActivityEnabled: false,
+      credentials: {
+        accessKeyId: '',
+        secretAccessKey: '',
+      },
+      credentialType: 'ACCESS_KEY',
+      eventSource: undefined,
+      regionList: [],
+      proxyUrl: '',
+    },
+  });
 
   const handleCreate = () => {
     console.log('Create cloud button clicked');
     setIsModalOpen(true);
   };
 
+  const handleSubmit = (data: CloudFormData) => {
+    console.log('Form submitted:', data);
+    // TODO: API 호출로 클라우드 생성
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
-      <Button onClick={handleCreate}>Create Cloud</Button>
+      <Button
+        onClick={handleCreate}
+        className="bg-blue-600 text-white hover:bg-blue-700"
+      >
+        Create Cloud
+      </Button>
       <Modal
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         title="Create Cloud"
       >
-        <div className="p-6">
-          <p>모달 내용이 여기에 들어갑니다.</p>
-          <p>이 부분에 폼 필드들이 추가될 예정입니다.</p>
-        </div>
+        <CloudForm
+          form={form}
+          onSubmit={handleSubmit}
+          onCancel={handleCancel}
+        />
       </Modal>
     </>
   );
