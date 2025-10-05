@@ -124,7 +124,7 @@ export default function ScanFrequencyFields({
         name="scheduleScanSetting.frequency"
         render={({ field }) => (
           <FormItem>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <Select onValueChange={field.onChange} value={field.value || ''}>
               <FormControl>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder={PLACEHOLDER_TEXT.FREQUENCY} />
@@ -157,7 +157,7 @@ export default function ScanFrequencyFields({
               </FormLabel>
               <Select
                 onValueChange={field.onChange}
-                value={field.value}
+                value={field.value || ''}
                 disabled={frequency !== 'MONTH'}
               >
                 <FormControl>
@@ -195,7 +195,7 @@ export default function ScanFrequencyFields({
               </FormLabel>
               <Select
                 onValueChange={field.onChange}
-                value={field.value}
+                value={field.value || ''}
                 disabled={frequency !== 'WEEK'}
               >
                 <FormControl>
@@ -233,7 +233,7 @@ export default function ScanFrequencyFields({
               </FormLabel>
               <Select
                 onValueChange={field.onChange}
-                value={field.value}
+                value={field.value || ''}
                 disabled={frequency === 'HOUR'}
               >
                 <FormControl>
@@ -267,7 +267,7 @@ export default function ScanFrequencyFields({
               <FormLabel className="w-32 text-right">
                 {LABEL_TEXT.MINUTE}
               </FormLabel>
-              <Select onValueChange={field.onChange} value={field.value}>
+              <Select onValueChange={field.onChange} value={field.value || ''}>
                 <FormControl>
                   <SelectTrigger className="flex-1">
                     <SelectValue placeholder={PLACEHOLDER_TEXT.MINUTE} />
