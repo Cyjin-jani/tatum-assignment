@@ -59,6 +59,13 @@ export function EditCloudButton({ cloudData }: EditCloudButtonProps) {
     setIsModalOpen(false);
   };
 
+  const handleModalChange = (open: boolean) => {
+    setIsModalOpen(open);
+    if (!open) {
+      form.reset();
+    }
+  };
+
   return (
     <>
       <Button
@@ -71,7 +78,7 @@ export function EditCloudButton({ cloudData }: EditCloudButtonProps) {
       </Button>
       <Modal
         open={isModalOpen}
-        onOpenChange={setIsModalOpen}
+        onOpenChange={handleModalChange}
         title="Edit Cloud"
         className="max-w-xl"
       >

@@ -54,6 +54,13 @@ export function CreateCloudButton() {
     setIsModalOpen(false);
   };
 
+  const handleModalChange = (open: boolean) => {
+    setIsModalOpen(open);
+    if (!open) {
+      form.reset();
+    }
+  };
+
   return (
     <>
       <Button
@@ -64,7 +71,7 @@ export function CreateCloudButton() {
       </Button>
       <Modal
         open={isModalOpen}
-        onOpenChange={setIsModalOpen}
+        onOpenChange={handleModalChange}
         title="Create Cloud"
         className="max-w-xl"
       >
