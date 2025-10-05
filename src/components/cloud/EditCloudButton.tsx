@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { Modal } from '@/components/shared/Modal';
-import { CloudForm } from '@/components/shared/cloud-form/CloudForm';
+import { CloudForm } from '@/components/cloud/cloudForm/CloudForm';
 import { CloudFormData, cloudFormSchema } from '@/lib/cloud-form-schema';
 import { Cloud } from '@/types';
 

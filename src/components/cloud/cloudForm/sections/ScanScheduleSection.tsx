@@ -12,7 +12,10 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
 import ScanFrequencyFields from '../ScanFrequencyFields';
-import { BOOLEAN_RADIO_OPTIONS, LABEL_TEXT } from '../constants';
+import {
+  BOOLEAN_RADIO_OPTIONS,
+  LABEL_TEXT,
+} from '@/components/cloud/constants';
 
 interface ScanScheduleSectionProps {
   scheduleScanEnabled: boolean;

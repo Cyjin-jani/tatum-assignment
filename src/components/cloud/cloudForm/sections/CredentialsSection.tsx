@@ -21,7 +21,7 @@ import {
   AWS_CREDENTIAL_TYPE_OPTIONS,
   PLACEHOLDER_TEXT,
   LABEL_TEXT,
-} from '../constants';
+} from '@/components/cloud/constants';
 
 type Provider = 'AWS' | 'AZURE' | 'GCP';
 

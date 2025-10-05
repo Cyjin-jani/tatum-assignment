@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import { PLACEHOLDER_TEXT, LABEL_TEXT } from '../constants';
+import { PLACEHOLDER_TEXT, LABEL_TEXT } from '@/components/cloud/constants';
 
 interface CloudGroupSectionProps {
   control: Control<CloudFormData>;

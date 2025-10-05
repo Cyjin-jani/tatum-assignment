@@ -17,7 +17,11 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { PROVIDER_OPTIONS, PLACEHOLDER_TEXT, LABEL_TEXT } from '../constants';
+import {
+  PROVIDER_OPTIONS,
+  PLACEHOLDER_TEXT,
+  LABEL_TEXT,
+} from '@/components/cloud/constants';
 
 interface BasicInfoSectionProps {
   control: Control<CloudFormData>;

@@ -23,7 +23,7 @@ import {
   WEEKDAY_OPTIONS,
   PLACEHOLDER_TEXT,
   LABEL_TEXT,
-} from './constants';
+} from '@/components/cloud/constants';
 import {
   DATE_RANGE,
   HOUR_RANGE,

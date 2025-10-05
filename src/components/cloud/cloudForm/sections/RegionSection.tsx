@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { PLACEHOLDER_TEXT, LABEL_TEXT } from '../constants';
+import { PLACEHOLDER_TEXT, LABEL_TEXT } from '@/components/cloud/constants';
 
 interface RegionSectionProps {
   control: Control<CloudFormData>;
