@@ -25,7 +25,7 @@ export default function EventSourceFields({
 
   return (
     <div className="space-y-4">
-      <h4 className="text-sm font-medium text-gray-900">Event Integration</h4>
+      <h4 className="text-md font-medium text-gray-900">Event Integration</h4>
       {config.eventSourceFields.map(field => (
         <FormField
           key={field.name}
