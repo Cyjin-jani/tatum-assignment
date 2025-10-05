@@ -56,7 +56,6 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
         </Form>
       </div>
 
-      {/* 버튼 영역 - 고정 */}
       <div className="flex justify-end space-x-4 border-t bg-white pt-6">
         <Button type="button" variant="outline" onClick={onCancel}>
           Cancel
