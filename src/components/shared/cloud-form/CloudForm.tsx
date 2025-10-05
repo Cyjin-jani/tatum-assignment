@@ -127,13 +127,11 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
               )}
             />
 
-            {/* 구분선 */}
             <div className="border-t" />
 
             {/* Credentials */}
             <CredentialsFields provider={provider} control={form.control} />
 
-            {/* 구분선 */}
             <div className="border-t" />
 
             {/* Region */}
@@ -185,7 +183,6 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
               )}
             />
 
-            {/* 구분선 */}
             <div className="border-t" />
 
             {/* Scan Schedule Setting */}
@@ -219,19 +216,16 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
             {/* Scan Frequency (조건부 렌더링) */}
             {scheduleScanEnabled && (
               <>
-                {/* 구분선 */}
                 <div className="border-t" />
                 <ScanFrequencyFields control={form.control} />
               </>
             )}
 
-            {/* 구분선 */}
             <div className="border-t" />
 
             {/* Event Integration */}
             <EventSourceFields provider={provider} control={form.control} />
 
-            {/* 구분선 */}
             <div className="border-t" />
 
             {/* Event Process Enabled */}
