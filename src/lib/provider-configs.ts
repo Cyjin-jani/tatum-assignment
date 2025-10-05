@@ -1,4 +1,4 @@
-type Provider = 'AWS' | 'AZURE' | 'GCP';
+import type { Provider } from '@/types';
 
 export interface FieldConfig {
   name: string;

@@ -1,7 +1,7 @@
 import { Control } from 'react-hook-form';
 import { CloudFormData } from '@/lib/cloud-form-schema';
 import { providerConfigs } from '@/lib/provider-configs';
-type Provider = 'AWS' | 'AZURE' | 'GCP';
+import type { Provider } from '@/types';
 
 import {
   FormControl,

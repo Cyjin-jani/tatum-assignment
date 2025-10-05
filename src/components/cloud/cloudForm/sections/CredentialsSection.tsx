@@ -22,8 +22,7 @@ import {
   PLACEHOLDER_TEXT,
   LABEL_TEXT,
 } from '@/components/cloud/constants';
-
-type Provider = 'AWS' | 'AZURE' | 'GCP';
+import type { Provider } from '@/types';
 
 interface CredentialsSectionProps {
   provider: Provider;

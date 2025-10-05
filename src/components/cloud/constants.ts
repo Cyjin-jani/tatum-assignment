@@ -2,22 +2,39 @@
  * Cloud Form 관련 상수 정의
  */
 
+import type {
+  Provider,
+  AWSCredentialType,
+  ScanFrequency,
+  Weekday,
+} from '@/types';
+
 // Provider 옵션
-export const PROVIDER_OPTIONS = [
+export const PROVIDER_OPTIONS: ReadonlyArray<{
+  value: Provider;
+  label: string;
+  disabled: boolean;
+}> = [
   { value: 'AWS', label: 'AWS', disabled: false },
   { value: 'AZURE', label: 'Azure (Coming Soon)', disabled: true },
   { value: 'GCP', label: 'GCP (Coming Soon)', disabled: true },
 ] as const;
 
 // AWS Credential Type 옵션
-export const AWS_CREDENTIAL_TYPE_OPTIONS = [
+export const AWS_CREDENTIAL_TYPE_OPTIONS: ReadonlyArray<{
+  value: AWSCredentialType;
+  label: string;
+}> = [
   { value: 'ACCESS_KEY', label: 'Access Key' },
   { value: 'ASSUME_ROLE', label: 'Assume Role' },
   { value: 'ROLES_ANYWHERE', label: 'Roles Anywhere' },
 ] as const;
 
 // Scan Frequency 옵션
-export const SCAN_FREQUENCY_OPTIONS = [
+export const SCAN_FREQUENCY_OPTIONS: ReadonlyArray<{
+  value: ScanFrequency;
+  label: string;
+}> = [
   { value: 'HOUR', label: 'Hourly' },
   { value: 'DAY', label: 'Daily' },
   { value: 'WEEK', label: 'Weekly' },
@@ -25,7 +42,10 @@ export const SCAN_FREQUENCY_OPTIONS = [
 ] as const;
 
 // 요일 옵션
-export const WEEKDAY_OPTIONS = [
+export const WEEKDAY_OPTIONS: ReadonlyArray<{
+  value: Weekday;
+  label: string;
+}> = [
   { value: 'MON', label: 'Monday' },
   { value: 'TUE', label: 'Tuesday' },
   { value: 'WED', label: 'Wednesday' },

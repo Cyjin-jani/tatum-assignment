@@ -16,8 +16,7 @@ import {
   BOOLEAN_RADIO_OPTIONS,
   LABEL_TEXT,
 } from '@/components/cloud/constants';
-
-type Provider = 'AWS' | 'AZURE' | 'GCP';
+import type { Provider } from '@/types';
 
 interface EventSectionProps {
   provider: Provider;
