@@ -48,6 +48,7 @@ export function CreateCloudButton() {
   const handleSubmit = (data: CloudFormData) => {
     console.log('Form submitted:', data);
     setIsModalOpen(false);
+    form.reset();
   };
 
   const handleModalChange = (open: boolean) => {
