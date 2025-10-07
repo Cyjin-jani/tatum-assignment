@@ -84,7 +84,6 @@
         "scheduleScanEnabled": true,
         "scheduleScanSetting": {
             "frequency": "HOUR",
-            "hour": "01",
             "minute": "00"
         },
         "regionList": [
