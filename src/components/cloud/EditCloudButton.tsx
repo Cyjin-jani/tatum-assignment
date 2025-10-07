@@ -16,10 +16,6 @@ interface EditCloudButtonProps {
 export function EditCloudButton({ cloudData }: EditCloudButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(
-    '🚀 ~ EditCloudButton ~ cloudData.scheduleScanSetting:',
-    cloudData.scheduleScanSetting
-  );
   const form = useForm<CloudFormData>({
     resolver: zodResolver(cloudFormSchema),
     defaultValues: {
