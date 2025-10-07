@@ -16,6 +16,10 @@ interface EditCloudButtonProps {
 export function EditCloudButton({ cloudData }: EditCloudButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log(
+    '🚀 ~ EditCloudButton ~ cloudData.scheduleScanSetting:',
+    cloudData.scheduleScanSetting
+  );
   const form = useForm<CloudFormData>({
     resolver: zodResolver(cloudFormSchema),
     defaultValues: {
@@ -23,12 +27,14 @@ export function EditCloudButton({ cloudData }: EditCloudButtonProps) {
       provider: cloudData.provider || 'AWS',
       cloudGroupName: cloudData.cloudGroupName || [],
       scheduleScanEnabled: cloudData.scheduleScanEnabled || false,
-      scheduleScanSetting: cloudData.scheduleScanSetting || {
-        frequency: undefined,
-        date: undefined,
-        weekday: undefined,
-        hour: undefined,
-        minute: undefined,
+      scheduleScanSetting: {
+        frequency: cloudData.scheduleScanSetting?.frequency || undefined,
+        date: cloudData.scheduleScanSetting?.date || undefined,
+        weekday: cloudData.scheduleScanSetting?.weekday || undefined,
+        hour: cloudData.scheduleScanSetting?.hour
+          ? parseInt(cloudData.scheduleScanSetting.hour).toString()
+          : undefined,
+        minute: cloudData.scheduleScanSetting?.minute || undefined,
       },
       eventProcessEnabled: cloudData.eventProcessEnabled || false,
       userActivityEnabled: cloudData.userActivityEnabled || false,
