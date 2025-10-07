@@ -37,12 +37,6 @@ interface ScanFrequencyFieldsProps {
 }
 
 export function ScanFrequencyFields({ control }: ScanFrequencyFieldsProps) {
-  // TODO: Frequency 변경 시 스마트 초기화 구현
-  // - Hour, Minute은 유지 (모든 frequency에서 공통 사용)
-  // - Date, Weekday는 해당 frequency가 아닐 때 초기화
-  // - useEffect로 frequency 변경 감지 후 선택적 리셋
-
-  // Watch all schedule scan setting fields
   const frequency = useWatch({
     control,
     name: 'scheduleScanSetting.frequency',
@@ -52,7 +46,6 @@ export function ScanFrequencyFields({ control }: ScanFrequencyFieldsProps) {
   const hour = useWatch({ control, name: 'scheduleScanSetting.hour' });
   const minute = useWatch({ control, name: 'scheduleScanSetting.minute' });
 
-  // 동적 스케줄 텍스트 생성
   const getScanScheduleText = () => {
     if (!frequency) return '-';
 
