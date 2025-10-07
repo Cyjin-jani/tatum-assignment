@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Cloud } from '@/types';
-import cloudsData from './clouds.mock.json';
+import cloudsData from './cloudsMock.json';
 
 export async function GET() {
   try {

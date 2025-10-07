@@ -1,5 +1,5 @@
 import { Control } from 'react-hook-form';
-import { CloudFormData } from '@/lib/cloud-form-schema';
+import { CloudFormData } from '@/lib/cloudFormSchema';
 
 import {
   FormControl,
