@@ -41,7 +41,7 @@ export const CloudForm = ({ form, onSubmit, onCancel }: CloudFormProps) => {
 
   return (
     <div className="flex h-[80vh] flex-col">
-      <div ref={formContainerRef} className="flex-1 overflow-y-auto pr-2">
+      <div ref={formContainerRef} className="flex-1 overflow-y-auto px-4">
         <Form {...form}>
           <form
             id="cloud-form"
