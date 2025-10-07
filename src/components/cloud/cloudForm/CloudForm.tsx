@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { CloudFormData } from '@/lib/cloud-form-schema';
+import { CloudFormData } from '@/lib/cloudFormSchema';
 
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
