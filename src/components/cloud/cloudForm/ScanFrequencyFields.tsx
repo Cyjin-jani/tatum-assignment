@@ -78,7 +78,9 @@ export function ScanFrequencyFields({ control }: ScanFrequencyFieldsProps) {
 
     switch (frequency) {
       case 'HOUR':
-        return minute ? `Hourly at :${minute.padStart(2, '0')}` : 'Hourly';
+        return minute && minute !== '00'
+          ? `Every hour at :${minute.padStart(2, '0')}`
+          : 'Every hour';
 
       case 'DAY':
         return hour && minute ? `Daily ${formatTime(hour, minute)}` : 'Daily';
