@@ -77,8 +77,8 @@ export const PLACEHOLDER_TEXT = {
   PROXY_URL: 'Please enter the proxy URL',
   CLOUD_GROUP_NAME: 'Select cloud groups',
   FREQUENCY: 'Select frequency',
-  HOUR: 'Select hour',
-  MINUTE: 'Select minute',
+  HOUR: '-',
+  MINUTE: '-',
 } as const;
 
 // 레이블 텍스트
